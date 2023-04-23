@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/common/common.dart';
 import 'package:twitter/constants/ui_constants.dart';
-import '../widgets/widgets.dart';
+import 'package:twitter/features/auth/widgets/widgets.dart';
 import 'package:twitter/themes/palette.dart';
 
 class LoginView extends StatefulWidget {
@@ -16,7 +17,7 @@ class _LoginViewState extends State<LoginView> {
       onPressed: (){},
       icon: const Icon(
         Icons.close,
-        color: Colors.white,
+        color: Palette.whiteColor,
       ),
     )
   );
@@ -40,7 +41,12 @@ class _LoginViewState extends State<LoginView> {
       ),
       bottomNavigationBar: BottomAppBar(
         color: Palette.backgroundColor,
-        padding: const EdgeInsets.all(15),
+        padding: EdgeInsets.only(
+          top: 5,
+          bottom: MediaQuery.of(context).viewInsets.bottom + 15,
+          left: 15,
+          right: 15
+        ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
