@@ -20,15 +20,16 @@ class AuthField extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
             borderSide: const BorderSide(
               color: Palette.blueColor,
-            )
+            ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
             borderSide: const BorderSide(
-              color: Colors.white38,
+              color: Palette.lightPrimary,
             )
           ),
           hintText: hintText,
+          labelText: hintText,
           contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
         ),
       ),

@@ -14,6 +14,7 @@ class _LoginViewState extends State<LoginView> {
   final userTextController = TextEditingController();
   final AppBar appBar = UIConstants.appBar(
     IconButton(
+      highlightColor: Colors.transparent,
       onPressed: (){},
       icon: const Icon(
         Icons.close,
@@ -27,7 +28,7 @@ class _LoginViewState extends State<LoginView> {
       appBar: appBar,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(18),
+          padding: const EdgeInsets.all(20),
           child: Column (
             children: [
               const Padding(
@@ -51,21 +52,32 @@ class _LoginViewState extends State<LoginView> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            RoundedButton(
-              callback: () { },
-              borderRadius: const BorderRadius.all(Radius.circular(30)),
-              padding: const EdgeInsets.all(5),
-              background: Palette.backgroundColor,
-              foreground: Palette.whiteColor,
-              size: const Size(0, 0),
+            InkWell(
+              onTap: () {},
+              splashColor: Colors.transparent,
               child: const Text(
-                "Forgot password?",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600
-                ),
-              ),
+                    "Forgot password?",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600
+                    ),
+                  ),
             ),
+            // RoundedButton(
+            //   callback: () { },
+            //   borderRadius: const BorderRadius.all(Radius.circular(30)),
+            //   padding: const EdgeInsets.all(5),
+            //   background: Palette.backgroundColor,
+            //   foreground: Palette.whiteColor,
+            //   size: const Size(0, 0),
+            //   child: const Text(
+            //     "Forgot password?",
+            //     style: TextStyle(
+            //       fontSize: 20,
+            //       fontWeight: FontWeight.w600
+            //     ),
+            //   ),
+            // ),
             RoundedButton(
               callback: () { },
               borderRadius: const BorderRadius.all(Radius.circular(30)),

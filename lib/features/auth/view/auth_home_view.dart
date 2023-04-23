@@ -17,19 +17,21 @@ class _AuthHomeViewState extends State<AuthHomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbar,
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Expanded(child: HeroText(text: "See what’s happening in the world right now.")),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.end,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(50),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 2,
+                width: MediaQuery.of(context).size.width,
+                child: const HeroText(text: "See what’s happening in the world right now."),),
               RoundedButton(
                 callback: () {},
-                size: const Size(310, 35),
+                size: const Size(600, 35),
                 borderRadius: const BorderRadius.all(Radius.circular(40)),
                 padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 5),
                 background: Palette.whiteColor,
@@ -58,39 +60,36 @@ class _AuthHomeViewState extends State<AuthHomeView> {
                   ],
                 )
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 1,
-                      width: 125,
-                      child: Container(
-                        color: const Color.fromRGBO(255, 255, 255, .4),
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 1.5,
+                    width: 125,
+                    child: Container(
+                      color: Palette.lightPrimary,
                     ),
-                    const Text(
-                      "or",
-                      style: TextStyle(
-                        color: Color.fromRGBO(255, 255, 255, .75),
-                        fontSize: 16
-                      ),
+                  ),
+                  const Text(
+                    "or",
+                    style: TextStyle(
+                      color: Palette.softPrimary,
+                      fontSize: 16
                     ),
-                    SizedBox(
-                      height: 1,
-                      width: 125,
-                      child: Container(
-                        color: const Color.fromRGBO(255, 255, 255, .4),
-                      ),
+                  ),
+                  SizedBox(
+                    height: 1.5,
+                    width: 125,
+                    child: Container(
+                      color: Palette.lightPrimary,
                     ),
-                  ],
-                ),
+                  ),
+                ]
               ),
               RoundedButton(
                 callback: () {},
-                size: const Size(310, 35),
+                size: const Size(600, 35),
                 borderRadius: const BorderRadius.all(Radius.circular(40)),
                 padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 20),
                 background: Palette.whiteColor,
@@ -106,58 +105,55 @@ class _AuthHomeViewState extends State<AuthHomeView> {
               const SizedBox(
                 height: 20,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
-                child: RichText(
-                  text: TextSpan(
-                    style: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.white70,
-                    ),
-                    children: [
-                      const TextSpan(
-                        text: "By signing up, you agree to our ",
-                      ),
-                      TextSpan(
-                        style: const TextStyle(
-                          color: Palette.blueColor,
-                        ),
-                        text: "Terms",
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {},
-                      ),
-                      const TextSpan(
-                        text: ", ",
-                      ),
-                      TextSpan(
-                        style: const TextStyle(
-                          color: Palette.blueColor,
-                        ),
-                        text: "Privacy Policy",
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {},
-                      ),
-                      const TextSpan(
-                        text: " and ",
-                      ),
-                      TextSpan(
-                        style: const TextStyle(
-                          color: Palette.blueColor,
-                        ),
-                        text: "Cookie Use",
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {},
-                      ),
-                      const TextSpan(
-                        text: ". ",
-                      ),
-                    ]
+              RichText(
+                text: TextSpan(
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Palette.softPrimary,
                   ),
+                  children: [
+                    const TextSpan(
+                      text: "By signing up, you agree to our ",
+                    ),
+                    TextSpan(
+                      style: const TextStyle(
+                        color: Palette.blueColor,
+                      ),
+                      text: "Terms",
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {},
+                    ),
+                    const TextSpan(
+                      text: ", ",
+                    ),
+                    TextSpan(
+                      style: const TextStyle(
+                        color: Palette.blueColor,
+                      ),
+                      text: "Privacy Policy",
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {},
+                    ),
+                    const TextSpan(
+                      text: " and ",
+                    ),
+                    TextSpan(
+                      style: const TextStyle(
+                        color: Palette.blueColor,
+                      ),
+                      text: "Cookie Use",
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {},
+                    ),
+                    const TextSpan(
+                      text: ". ",
+                    ),
+                  ]
                 ),
               ),
             ],
           ),
-        ],
+        ),
       ),
       bottomNavigationBar:
         Padding(
@@ -167,7 +163,7 @@ class _AuthHomeViewState extends State<AuthHomeView> {
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w400,
-                color: Color.fromRGBO(255, 255, 255, 0.80)
+                color: Palette.softPrimary
               ),
               children: [
                 const TextSpan(
