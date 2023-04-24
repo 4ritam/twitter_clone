@@ -32,7 +32,7 @@ class _LoginViewState extends State<LoginView> {
           child: Column (
             children: [
               const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.symmetric(vertical: 5),
                 child: HeroText(text: "To get started, first enter your phone, email address or @username"),
               ),
               AuthField(controller: userTextController, hintText: "Phone, email address, or username")
@@ -52,16 +52,19 @@ class _LoginViewState extends State<LoginView> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            InkWell(
-              onTap: () {},
-              splashColor: Colors.transparent,
-              child: const Text(
-                    "Forgot password?",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                onTap: () {},
+                splashColor: Colors.transparent,
+                child: const Text(
+                      "Forgot password?",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600
+                      ),
                     ),
-                  ),
+              ),
             ),
             // RoundedButton(
             //   callback: () { },
@@ -88,8 +91,8 @@ class _LoginViewState extends State<LoginView> {
               child: const Text(
                 "Next",
                 style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500
                 ),
               ),
             ),

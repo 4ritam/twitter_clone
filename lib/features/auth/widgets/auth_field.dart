@@ -9,10 +9,11 @@ class AuthField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 20),
       child: TextFormField(
         style: const TextStyle(
-          fontSize: 22,
+          color: Palette.blueColor,
+          fontSize: 16,
         ),
         controller: controller,
         decoration: InputDecoration(

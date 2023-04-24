@@ -15,7 +15,7 @@ class HeroText extends StatelessWidget {
           style: const TextStyle(
             fontFamily: "Anuphan-SemiBold",
             letterSpacing: 1.5,
-            fontSize: 34
+            fontSize: 24
             // height: 1
           ),
         ),
