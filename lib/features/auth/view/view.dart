@@ -1,2 +1,2 @@
-export './auth_home_view.dart';
-export './login_view.dart';
+export 'get_started_view.dart';
+export 'login_view.dart';

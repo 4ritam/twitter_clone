@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/routes/app_config.dart';
 import 'package:twitter/themes/app_theme.dart';
-import 'features/features.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +11,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Twitter',
       theme: AppTheme.theme,
       debugShowCheckedModeBanner: false,
-      home: const AuthHomeView(),
+      routeInformationParser: AppConfig.router(false).routeInformationParser,
+      routerDelegate: AppConfig.router(false).routerDelegate,
     );
   }
 }

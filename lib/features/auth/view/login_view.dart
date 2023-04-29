@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:twitter/common/common.dart';
 import 'package:twitter/constants/ui_constants.dart';
-import 'package:twitter/features/auth/view/auth_home_view.dart';
-import 'package:twitter/features/auth/view/verification_view.dart';
 import 'package:twitter/features/auth/widgets/widgets.dart';
+import 'package:twitter/routes/app_routes.dart';
 import 'package:twitter/themes/palette.dart';
 
 class LoginView extends StatefulWidget {
@@ -14,17 +14,18 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final userTextController = TextEditingController();
+  final TextEditingController userTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: UIConstants.appBar(
         IconButton(
-            highlightColor: Colors.transparent,
-            onPressed: (){
-              Navigator.push(context, AuthHomeView.route());
-            },
-            icon: const Icon(
+          highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
             Icons.close,
             color: Palette.whiteColor,
           ),
@@ -33,25 +34,29 @@ class _LoginViewState extends State<LoginView> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: Column (
+          child: Column(
             children: [
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 5),
-                child: HeroText(text: "To get started, first enter your phone, email address or @username"),
+                child: HeroText(
+                    text:
+                        "To get started, first enter your phone, email address or @username"),
               ),
-              AuthField(controller: userTextController, hintText: "Phone, email address, or username")
+              AuthField(
+                controller: userTextController,
+                hintText: "Phone, email address, or username",
+              ),
             ],
           ),
-        )
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         color: Palette.backgroundColor,
         padding: EdgeInsets.only(
-          top: 5,
-          bottom: MediaQuery.of(context).viewInsets.bottom + 15,
-          left: 15,
-          right: 15
-        ),
+            top: 5,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 15,
+            left: 15,
+            right: 15),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,32 +67,15 @@ class _LoginViewState extends State<LoginView> {
                 onTap: () {},
                 splashColor: Colors.transparent,
                 child: const Text(
-                      "Forgot password?",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600
-                      ),
-                    ),
+                  "Forgot password?",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
               ),
             ),
-            // RoundedButton(
-            //   callback: () { },
-            //   borderRadius: const BorderRadius.all(Radius.circular(30)),
-            //   padding: const EdgeInsets.all(5),
-            //   background: Palette.backgroundColor,
-            //   foreground: Palette.whiteColor,
-            //   size: const Size(0, 0),
-            //   child: const Text(
-            //     "Forgot password?",
-            //     style: TextStyle(
-            //       fontSize: 20,
-            //       fontWeight: FontWeight.w600
-            //     ),
-            //   ),
-            // ),
             RoundedButton(
               callback: () {
-                Navigator.push(context, VerificationView.route());
+                GoRouter.of(context)
+                    .pushReplacementNamed(AppRoutes.loginVerificationRoute);
               },
               borderRadius: const BorderRadius.all(Radius.circular(30)),
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
@@ -96,14 +84,11 @@ class _LoginViewState extends State<LoginView> {
               size: const Size(0, 0),
               child: const Text(
                 "Next",
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500
-                ),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
             ),
           ],
-        )
+        ),
       ),
     );
   }

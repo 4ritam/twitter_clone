@@ -4,7 +4,17 @@ import 'package:twitter/themes/palette.dart';
 class AuthField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
-  const AuthField({Key? key, required this.controller, required this.hintText}) : super(key: key);
+  final TextInputType textInputType;
+  final bool obscure;
+  final bool autoFocus;
+  const AuthField(
+      {Key? key,
+      required this.controller,
+      required this.hintText,
+      this.textInputType = TextInputType.text,
+      this.obscure = false,
+      this.autoFocus = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +25,8 @@ class AuthField extends StatelessWidget {
           color: Palette.blueColor,
           fontSize: 16,
         ),
+        obscureText: obscure,
+        keyboardType: textInputType,
         controller: controller,
         decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(
@@ -24,14 +36,14 @@ class AuthField extends StatelessWidget {
             ),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5),
-            borderSide: const BorderSide(
-              color: Palette.lightPrimary,
-            )
-          ),
+              borderRadius: BorderRadius.circular(5),
+              borderSide: const BorderSide(
+                color: Palette.lightPrimary,
+              )),
           hintText: hintText,
           labelText: hintText,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
         ),
       ),
     );
