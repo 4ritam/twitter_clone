@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:twitter/themes/app_theme.dart';
-
-import 'features/auth/view/view.dart';
+import 'features/features.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Twitter',
       theme: AppTheme.theme,
       debugShowCheckedModeBanner: false,
-      home: const LoginView(),
+      home: const AuthHomeView(),
     );
   }
 }

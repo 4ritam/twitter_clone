@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:twitter/common/common.dart';
 import 'package:twitter/constants/ui_constants.dart';
+import 'package:twitter/features/auth/view/auth_home_view.dart';
+import 'package:twitter/features/auth/view/verification_view.dart';
 import 'package:twitter/features/auth/widgets/widgets.dart';
 import 'package:twitter/themes/palette.dart';
 
 class LoginView extends StatefulWidget {
+  static route() => MaterialPageRoute(builder: (context) => const LoginView());
   const LoginView({super.key});
   @override
   State<LoginView> createState() => _LoginViewState();
@@ -12,20 +15,21 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final userTextController = TextEditingController();
-  final AppBar appBar = UIConstants.appBar(
-    IconButton(
-      highlightColor: Colors.transparent,
-      onPressed: (){},
-      icon: const Icon(
-        Icons.close,
-        color: Palette.whiteColor,
-      ),
-    )
-  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar,
+      appBar: UIConstants.appBar(
+        IconButton(
+            highlightColor: Colors.transparent,
+            onPressed: (){
+              Navigator.push(context, AuthHomeView.route());
+            },
+            icon: const Icon(
+            Icons.close,
+            color: Palette.whiteColor,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -82,7 +86,9 @@ class _LoginViewState extends State<LoginView> {
             //   ),
             // ),
             RoundedButton(
-              callback: () { },
+              callback: () {
+                Navigator.push(context, VerificationView.route());
+              },
               borderRadius: const BorderRadius.all(Radius.circular(30)),
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
               background: Palette.whiteColor,

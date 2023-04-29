@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/constants/constants.dart';
 
 class VerificationView extends StatefulWidget {
+  static route() => MaterialPageRoute(builder: (context) => const VerificationView());
   const VerificationView({Key? key}) : super(key: key);
 
   @override
@@ -10,6 +12,8 @@ class VerificationView extends StatefulWidget {
 class _VerificationViewState extends State<VerificationView> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: UIConstants.appBar(null),
+    );
   }
 }

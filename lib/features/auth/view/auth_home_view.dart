@@ -2,10 +2,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:twitter/common/common.dart';
 import 'package:twitter/constants/constants.dart';
+import 'package:twitter/features/auth/view/login_view.dart';
 import 'package:twitter/features/auth/widgets/widgets.dart';
 import 'package:twitter/themes/palette.dart';
 
 class AuthHomeView extends StatefulWidget {
+  static route() => MaterialPageRoute(builder: (context) => const AuthHomeView());
   const AuthHomeView({Key? key}) : super(key: key);
   @override
   State<AuthHomeView> createState() => _AuthHomeViewState();
@@ -175,7 +177,9 @@ class _AuthHomeViewState extends State<AuthHomeView> {
                   ),
                   text: "Log in",
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () {},
+                    ..onTap = () {
+                      Navigator.push(context, LoginView.route());
+                    },
                 ),
               ]
             ),
