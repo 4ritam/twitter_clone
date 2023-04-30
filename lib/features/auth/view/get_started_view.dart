@@ -32,7 +32,7 @@ class _GetStartedViewState extends State<GetStartedView> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height / 2,
+                height: MediaQuery.of(context).size.height * 2 / 5,
                 width: MediaQuery.of(context).size.width,
                 child: const HeroText(
                     text: "See what’s happening in the world right now."),
