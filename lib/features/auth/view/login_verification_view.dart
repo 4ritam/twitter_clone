@@ -21,6 +21,8 @@ class _LoginVerificationViewState extends State<LoginVerificationView> {
     return Scaffold(
       appBar: UIConstants.appBar(
         IconButton(
+          highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
           onPressed: () {
             Navigator.pop(context);
           },
@@ -70,6 +72,8 @@ class _LoginVerificationViewState extends State<LoginVerificationView> {
                 height: 20,
               ),
               InkWell(
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
                 onTap: () {},
                 child: const Text(
                   "Forgot Password",

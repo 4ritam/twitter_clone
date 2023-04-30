@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:twitter/common/common.dart';
 import 'package:twitter/constants/ui_constants.dart';
 import 'package:twitter/features/auth/view/view.dart';
@@ -21,6 +20,7 @@ class _LoginViewState extends State<LoginView> {
       appBar: UIConstants.appBar(
         IconButton(
           highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
           onPressed: () {
             Navigator.pop(context);
           },

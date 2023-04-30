@@ -13,7 +13,11 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
+  bool email = false;
   final TextEditingController userTextController = TextEditingController();
+  final TextEditingController nameTextController = TextEditingController();
+  final TextEditingController dateOfBirthTextController =
+      TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,10 +44,19 @@ class _SignUpViewState extends State<SignUpView> {
               child: HeroText(text: "Create Your Account"),
             ),
             AuthField(
-              obscure: false,
-              textInputType: TextInputType.text,
+              textInputType: TextInputType.name,
+              controller: nameTextController,
+              hintText: "Name",
+            ),
+            AuthField(
+              textInputType: TextInputType.phone,
               controller: userTextController,
-              hintText: "Phone, email address, or username",
+              hintText: "Phone",
+            ),
+            AuthField(
+              textInputType: TextInputType.datetime,
+              controller: userTextController,
+              hintText: "Date of Birth",
             ),
           ],
         ),
@@ -65,7 +78,7 @@ class _SignUpViewState extends State<SignUpView> {
                   onTap: () {},
                   splashColor: Colors.transparent,
                   child: const Text(
-                    "Forgot password?",
+                    "Email",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                 ),

@@ -5,11 +5,11 @@ import 'package:twitter/themes/palette.dart';
 
 class UIConstants {
   static AppBar appBar(Widget? leading) {
-    if(leading == null) {
+    if (leading == null) {
       return AppBar(
         title: SvgPicture.asset(
           AssetsConstants.twitterLogo,
-          color: Palette.blueColor,
+          colorFilter: ColorFilter.mode(Palette.blueColor, BlendMode.srcIn),
           height: 30,
         ),
         centerTitle: true,
@@ -19,7 +19,8 @@ class UIConstants {
         leading: leading,
         title: SvgPicture.asset(
           AssetsConstants.twitterLogo,
-          color: Palette.blueColor,
+          colorFilter: ColorFilter.mode(Palette.blueColor, BlendMode.srcIn),
+          semanticsLabel: "Twitter Logo",
           height: 30,
         ),
         centerTitle: true,
