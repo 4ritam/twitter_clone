@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:twitter/common/common.dart';
-import 'package:twitter/constants/ui_constants.dart';
-import 'package:twitter/features/auth/view/view.dart';
+import 'package:twitter/constants/constants.dart';
 import 'package:twitter/features/auth/widgets/widgets.dart';
 import 'package:twitter/themes/palette.dart';
 
-class LoginView extends StatefulWidget {
-  static route() => MaterialPageRoute(builder: (context) => const LoginView());
-  const LoginView({super.key});
+class SignUpView extends StatefulWidget {
+  static route() => MaterialPageRoute(builder: (context) => const SignUpView());
+  const SignUpView({super.key});
+
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
-  final userTextController = TextEditingController();
+class _SignUpViewState extends State<SignUpView> {
+  final TextEditingController userTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: UIConstants.appBar(
         IconButton(
           highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
           onPressed: () {
             Navigator.pop(context);
           },
@@ -36,13 +37,14 @@ class _LoginViewState extends State<LoginView> {
           children: [
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 5),
-              child: HeroText(
-                  text:
-                      "To get started, first enter your phone, email address or @username"),
+              child: HeroText(text: "Create Your Account"),
             ),
             AuthField(
-                controller: userTextController,
-                hintText: "Phone, email address, or username")
+              obscure: false,
+              textInputType: TextInputType.text,
+              controller: userTextController,
+              hintText: "Phone, email address, or username",
+            ),
           ],
         ),
       )),
@@ -69,10 +71,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
               RoundedButton(
-                callback: () {
-                  Navigator.pushReplacement(
-                      context, LoginVerificationView.route());
-                },
+                callback: () {},
                 borderRadius: const BorderRadius.all(Radius.circular(30)),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 14, vertical: 7),

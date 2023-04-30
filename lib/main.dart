@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Twitter',
       theme: AppTheme.theme,
       debugShowCheckedModeBanner: false,
-      home: const AuthHomeView(),
+      home: const GetStartedView(),
     );
   }
 }
