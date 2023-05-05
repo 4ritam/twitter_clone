@@ -1,25 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:twitter/common/common.dart';
 import 'package:twitter/constants/constants.dart';
+import 'package:twitter/features/auth/controller/controller.dart';
 import 'package:twitter/features/auth/widgets/widgets.dart';
 import 'package:twitter/themes/palette.dart';
 
-class SignUpView extends StatefulWidget {
+class SignUpView extends ConsumerStatefulWidget {
   static route() => MaterialPageRoute(builder: (context) => const SignUpView());
   const SignUpView({super.key});
 
   @override
-  State<SignUpView> createState() => _SignUpViewState();
+  ConsumerState<SignUpView> createState() => _SignUpViewState();
 }
 
-class _SignUpViewState extends State<SignUpView> {
+class _SignUpViewState extends ConsumerState<SignUpView> {
   bool email = false;
-  final TextEditingController userTextController = TextEditingController();
   final TextEditingController nameTextController = TextEditingController();
-  final TextEditingController dateOfBirthTextController =
-      TextEditingController();
+  final TextEditingController emailTextController = TextEditingController();
+  final TextEditingController dateOfBirthController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  void onSignup() {
+    ref.read(authControllerProvider.notifier).signup(
+          email: emailTextController.text,
+          password: passwordController.text,
+          context: context,
+        );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailTextController.dispose();
+    nameTextController.dispose();
+    dateOfBirthController.dispose();
+    passwordController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(authControllerProvider);
     return Scaffold(
       appBar: UIConstants.appBar(
         IconButton(
@@ -34,33 +55,36 @@ class _SignUpViewState extends State<SignUpView> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-          child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 5),
-              child: HeroText(text: "Create Your Account"),
-            ),
-            AuthField(
-              textInputType: TextInputType.name,
-              controller: nameTextController,
-              hintText: "Name",
-            ),
-            AuthField(
-              textInputType: TextInputType.phone,
-              controller: userTextController,
-              hintText: "Phone",
-            ),
-            AuthField(
-              textInputType: TextInputType.datetime,
-              controller: userTextController,
-              hintText: "Date of Birth",
-            ),
-          ],
-        ),
-      )),
+      body: isLoading
+          ? Loader()
+          : SingleChildScrollView(
+              child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5),
+                    child: HeroText(text: "Create Your Account"),
+                  ),
+                  AuthField(
+                    textInputType: TextInputType.name,
+                    controller: nameTextController,
+                    hintText: "Name",
+                  ),
+                  AuthField(
+                    textInputType: TextInputType.phone,
+                    controller: emailTextController,
+                    hintText: "email",
+                  ),
+                  AuthField(
+                    textInputType: TextInputType.text,
+                    obscure: true,
+                    controller: passwordController,
+                    hintText: "password",
+                  ),
+                ],
+              ),
+            )),
       bottomNavigationBar: BottomAppBar(
           color: Palette.backgroundColor,
           padding: EdgeInsets.only(
@@ -84,7 +108,7 @@ class _SignUpViewState extends State<SignUpView> {
                 ),
               ),
               RoundedButton(
-                callback: () {},
+                callback: onSignup,
                 borderRadius: const BorderRadius.all(Radius.circular(30)),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
