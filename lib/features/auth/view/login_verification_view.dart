@@ -1,23 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:twitter/common/common.dart';
 import 'package:twitter/constants/constants.dart';
+import 'package:twitter/features/auth/controller/controller.dart';
 import 'package:twitter/features/auth/widgets/widgets.dart';
 import 'package:twitter/themes/palette.dart';
 
-class LoginVerificationView extends StatefulWidget {
+class LoginVerificationView extends ConsumerStatefulWidget {
   static route() =>
       MaterialPageRoute(builder: (context) => const LoginVerificationView());
   const LoginVerificationView({Key? key}) : super(key: key);
 
   @override
-  State<LoginVerificationView> createState() => _LoginVerificationViewState();
+  ConsumerState<LoginVerificationView> createState() =>
+      _LoginVerificationViewState();
 }
 
-class _LoginVerificationViewState extends State<LoginVerificationView> {
-  final TextEditingController userController = TextEditingController();
+class _LoginVerificationViewState extends ConsumerState<LoginVerificationView> {
+  final TextEditingController emailTextController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  void login() {
+    ref.read(authControllerProvider.notifier).login(
+          email: emailTextController.text,
+          password: passwordController.text,
+          context: context,
+        );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailTextController.dispose();
+    passwordController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    bool isLoading = ref.watch(authControllerProvider);
+
     return Scaffold(
       appBar: UIConstants.appBar(
         IconButton(
@@ -32,61 +53,63 @@ class _LoginVerificationViewState extends State<LoginVerificationView> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              const HeroText(text: "Enter your password"),
-              AuthField(
-                controller: userController,
-                hintText: "Phone, email, username",
-              ),
-              AuthField(
-                controller: passwordController,
-                hintText: "Password",
-                textInputType: TextInputType.text,
-                obscure: true,
-                autoFocus: true,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              RoundedButton(
-                callback: () {},
-                padding: const EdgeInsets.all(15),
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(30),
+      body: isLoading
+          ? Loader()
+          : SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    const HeroText(text: "Enter your password"),
+                    AuthField(
+                      controller: emailTextController,
+                      hintText: "Phone, email, username",
+                    ),
+                    AuthField(
+                      controller: passwordController,
+                      hintText: "Password",
+                      textInputType: TextInputType.text,
+                      obscure: true,
+                      autoFocus: true,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    RoundedButton(
+                      callback: login,
+                      padding: const EdgeInsets.all(15),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(30),
+                      ),
+                      size: const Size(400, 50),
+                      background: Colors.white,
+                      foreground: Colors.black,
+                      child: const Text(
+                        "Log In",
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    InkWell(
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
+                      onTap: () {},
+                      child: const Text(
+                        "Forgot Password",
+                        style: TextStyle(
+                            color: Palette.blueColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  ],
                 ),
-                size: const Size(400, 50),
-                background: Colors.white,
-                foreground: Colors.black,
-                child: const Text(
-                  "Log In",
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              InkWell(
-                highlightColor: Colors.transparent,
-                splashColor: Colors.transparent,
-                onTap: () {},
-                child: const Text(
-                  "Forgot Password",
-                  style: TextStyle(
-                      color: Palette.blueColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 }
