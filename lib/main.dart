@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:twitter/common/common.dart';
-import 'package:twitter/themes/app_theme.dart';
+import 'common/common.dart';
 import 'features/features.dart';
+import 'themes/app_theme.dart';
 
 void main() {
   runApp(ProviderScope(child: const MyApp()));
@@ -22,7 +22,7 @@ class MyApp extends ConsumerWidget {
                 if (user != null) {
                   return const HomeView();
                 } else {
-                  return const SignUpView();
+                  return const GetStartedView();
                 }
               },
               error: (e, st) => ErrorPage(error: e.toString()),

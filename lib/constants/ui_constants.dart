@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:twitter/constants/assets_constants.dart';
-import 'package:twitter/themes/palette.dart';
+
+import '../themes/palette.dart';
 
 class UIConstants {
   static AppBar appBar(Widget? leading) {

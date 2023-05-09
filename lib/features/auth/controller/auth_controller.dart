@@ -1,8 +1,9 @@
 import 'package:appwrite/models.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:twitter/apis/auth_api.dart';
-import 'package:twitter/core/core.dart';
+import '../../../apis/apis.dart';
+import '../../../core/core.dart';
+import '../../features.dart';
 
 final authControllerProvider =
     StateNotifierProvider<AuthController, bool>((ref) {
@@ -33,7 +34,13 @@ class AuthController extends StateNotifier<bool> {
     state = true;
     final res = await _authAPI.signup(email: email, password: password);
     state = false;
-    res.fold((l) => showSnackBar(context, l.message), (r) => print(r.name));
+    res.fold(
+      (l) => showSnackBar(context, l.message),
+      (r) {
+        showSnackBar(context, "Account Created, Logging in.");
+        login(email: email, password: password, context: context);
+      },
+    );
   }
 
   void login({
@@ -44,6 +51,12 @@ class AuthController extends StateNotifier<bool> {
     state = true;
     final res = await _authAPI.login(email: email, password: password);
     state = false;
-    res.fold((l) => showSnackBar(context, l.message), (r) => print(r.userId));
+    res.fold(
+      (l) => showSnackBar(context, l.message),
+      (r) => Navigator.push(
+        context,
+        HomeView.route(),
+      ),
+    );
   }
 }

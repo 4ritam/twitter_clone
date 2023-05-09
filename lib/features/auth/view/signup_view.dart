@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:twitter/common/common.dart';
-import 'package:twitter/constants/constants.dart';
-import 'package:twitter/features/auth/controller/controller.dart';
-import 'package:twitter/features/auth/widgets/widgets.dart';
-import 'package:twitter/themes/palette.dart';
+
+import '../../../common/common.dart';
+import '../../../constants/constants.dart';
+import '../../../themes/palette.dart';
+import '../auth.dart';
 
 class SignUpView extends ConsumerStatefulWidget {
   static route() => MaterialPageRoute(builder: (context) => const SignUpView());

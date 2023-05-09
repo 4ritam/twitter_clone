@@ -1,9 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:twitter/common/common.dart';
-import 'package:twitter/constants/constants.dart';
-import 'package:twitter/features/auth/auth.dart';
-import 'package:twitter/themes/palette.dart';
+
+import '../../../common/common.dart';
+import '../../../constants/constants.dart';
+import '../../../themes/palette.dart';
+import '../auth.dart';
 
 class GetStartedView extends StatefulWidget {
   static route() =>

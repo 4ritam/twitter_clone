@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:twitter/common/common.dart';
-import 'package:twitter/constants/ui_constants.dart';
-import 'package:twitter/features/auth/view/view.dart';
-import 'package:twitter/features/auth/widgets/widgets.dart';
-import 'package:twitter/themes/palette.dart';
+
+import '../../../common/common.dart';
+import '../../../constants/constants.dart';
+import '../../../themes/palette.dart';
+import '../../features.dart';
 
 class LoginView extends StatefulWidget {
   static route() => MaterialPageRoute(builder: (context) => const LoginView());
