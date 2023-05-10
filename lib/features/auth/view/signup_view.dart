@@ -23,6 +23,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
 
   void onSignup() {
     ref.read(authControllerProvider.notifier).signup(
+          name: nameTextController.text,
           email: emailTextController.text,
           password: passwordController.text,
           context: context,
